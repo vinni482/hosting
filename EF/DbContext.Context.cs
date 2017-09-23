@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Hosting.EF
+namespace EF
 {
     using System;
     using System.Data.Entity;
