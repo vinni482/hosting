@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[HostingPlans]
+(
+	[ID] INT NOT NULL IDENTITY(1,1),
+	[Name] NVARCHAR(50) NOT NULL,
+	[Description] NVARCHAR(200) NOT NULL,
+	[Active] BIT DEFAULT (1) NOT NULL
+	CONSTRAINT [PK_HostingPlans_ID] PRIMARY KEY ([ID] ASC),
+)
