@@ -7,6 +7,8 @@
 *.exe
 *.pdb
 Hosting/Configs/ConnectionStrings.config
+DB/DB.dbmdl
+DB/DB.jfm
 *.dll.config
 *.cache
 *.suo
