@@ -6,6 +6,7 @@
 *.dll
 *.exe
 *.pdb
+Hosting/Configs/ConnectionStrings.config
 *.dll.config
 *.cache
 *.suo
