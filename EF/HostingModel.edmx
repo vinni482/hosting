@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HostingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Features">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HostingPlanID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HostingPlans">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HostingPlansPrices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HostingPlanID" Type="int" Nullable="false" />
+          <Property Name="Months" Type="int" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AspNetUserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersHostingPlans">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="HostingPlanID" Type="int" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+          <Property Name="NextBillingDate" Type="datetime" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Features_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlans" Multiplicity="1" />
+          <End Role="Features" Type="Self.Features" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Features">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HostingPlansPrices_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlans" Multiplicity="1" />
+          <End Role="HostingPlansPrices" Type="Self.HostingPlansPrices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostingPlansPrices">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersHostingPlans_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlans" Multiplicity="1" />
+          <End Role="UsersHostingPlans" Type="Self.UsersHostingPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersHostingPlans">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersHostingPlans_Users_UserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersHostingPlans" Type="Self.UsersHostingPlans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersHostingPlans">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HostingModelStoreContainer">
+          <EntitySet Name="Features" EntityType="Self.Features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HostingPlans" EntityType="Self.HostingPlans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HostingPlansPrices" EntityType="Self.HostingPlansPrices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersHostingPlans" EntityType="Self.UsersHostingPlans" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Features_HostingPlans_HostingPlanID" Association="Self.FK_Features_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="Features" EntitySet="Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HostingPlansPrices_HostingPlans_HostingPlanID" Association="Self.FK_HostingPlansPrices_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="HostingPlansPrices" EntitySet="HostingPlansPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersHostingPlans_HostingPlans_HostingPlanID" Association="Self.FK_UsersHostingPlans_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="UsersHostingPlans" EntitySet="UsersHostingPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersHostingPlans_Users_UserID" Association="Self.FK_UsersHostingPlans_Users_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersHostingPlans" EntitySet="UsersHostingPlans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HostingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HostingPlanID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="HostingPlan" Relationship="Self.FK_Features_HostingPlans_HostingPlanID" FromRole="Features" ToRole="HostingPlans" />
+        </EntityType>
+        <EntityType Name="HostingPlan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Features" Relationship="Self.FK_Features_HostingPlans_HostingPlanID" FromRole="HostingPlans" ToRole="Features" />
+          <NavigationProperty Name="HostingPlansPrices" Relationship="Self.FK_HostingPlansPrices_HostingPlans_HostingPlanID" FromRole="HostingPlans" ToRole="HostingPlansPrices" />
+          <NavigationProperty Name="UsersHostingPlans" Relationship="Self.FK_UsersHostingPlans_HostingPlans_HostingPlanID" FromRole="HostingPlans" ToRole="UsersHostingPlans" />
+        </EntityType>
+        <EntityType Name="HostingPlansPrice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HostingPlanID" Type="Int32" Nullable="false" />
+          <Property Name="Months" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <NavigationProperty Name="HostingPlan" Relationship="Self.FK_HostingPlansPrices_HostingPlans_HostingPlanID" FromRole="HostingPlansPrices" ToRole="HostingPlans" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AspNetUserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="UsersHostingPlans" Relationship="Self.FK_UsersHostingPlans_Users_UserID" FromRole="Users" ToRole="UsersHostingPlans" />
+        </EntityType>
+        <EntityType Name="UsersHostingPlan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="HostingPlanID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NextBillingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HostingPlan" Relationship="Self.FK_UsersHostingPlans_HostingPlans_HostingPlanID" FromRole="UsersHostingPlans" ToRole="HostingPlans" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UsersHostingPlans_Users_UserID" FromRole="UsersHostingPlans" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Features_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlan" Multiplicity="1" />
+          <End Role="Features" Type="Self.Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Features">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HostingPlansPrices_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlan" Multiplicity="1" />
+          <End Role="HostingPlansPrices" Type="Self.HostingPlansPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HostingPlansPrices">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersHostingPlans_HostingPlans_HostingPlanID">
+          <End Role="HostingPlans" Type="Self.HostingPlan" Multiplicity="1" />
+          <End Role="UsersHostingPlans" Type="Self.UsersHostingPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HostingPlans">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersHostingPlans">
+              <PropertyRef Name="HostingPlanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersHostingPlans_Users_UserID">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersHostingPlans" Type="Self.UsersHostingPlan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UsersHostingPlans">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HostingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Features" EntityType="Self.Feature" />
+          <EntitySet Name="HostingPlans" EntityType="Self.HostingPlan" />
+          <EntitySet Name="HostingPlansPrices" EntityType="Self.HostingPlansPrice" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersHostingPlans" EntityType="Self.UsersHostingPlan" />
+          <AssociationSet Name="FK_Features_HostingPlans_HostingPlanID" Association="Self.FK_Features_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="Features" EntitySet="Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HostingPlansPrices_HostingPlans_HostingPlanID" Association="Self.FK_HostingPlansPrices_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="HostingPlansPrices" EntitySet="HostingPlansPrices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersHostingPlans_HostingPlans_HostingPlanID" Association="Self.FK_UsersHostingPlans_HostingPlans_HostingPlanID">
+            <End Role="HostingPlans" EntitySet="HostingPlans" />
+            <End Role="UsersHostingPlans" EntitySet="UsersHostingPlans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersHostingPlans_Users_UserID" Association="Self.FK_UsersHostingPlans_Users_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersHostingPlans" EntitySet="UsersHostingPlans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HostingModelStoreContainer" CdmEntityContainer="HostingEntities">
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="HostingModel.Feature">
+              <MappingFragment StoreEntitySet="Features">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HostingPlanID" ColumnName="HostingPlanID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HostingPlans">
+            <EntityTypeMapping TypeName="HostingModel.HostingPlan">
+              <MappingFragment StoreEntitySet="HostingPlans">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HostingPlansPrices">
+            <EntityTypeMapping TypeName="HostingModel.HostingPlansPrice">
+              <MappingFragment StoreEntitySet="HostingPlansPrices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="HostingPlanID" ColumnName="HostingPlanID" />
+                <ScalarProperty Name="Months" ColumnName="Months" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HostingModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AspNetUserID" ColumnName="AspNetUserID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersHostingPlans">
+            <EntityTypeMapping TypeName="HostingModel.UsersHostingPlan">
+              <MappingFragment StoreEntitySet="UsersHostingPlans">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HostingPlanID" ColumnName="HostingPlanID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="NextBillingDate" ColumnName="NextBillingDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

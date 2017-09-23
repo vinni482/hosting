@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4d9a8a52b7ce4fddbe8b5e6c4c3ad2d2" Name="Diagram1">
+        <EntityTypeShape EntityType="HostingModel.Feature" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HostingModel.HostingPlan" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HostingModel.HostingPlansPrice" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HostingModel.User" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HostingModel.UsersHostingPlan" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <AssociationConnector Association="HostingModel.FK_Features_HostingPlans_HostingPlanID" ManuallyRouted="false" />
+        <AssociationConnector Association="HostingModel.FK_HostingPlansPrices_HostingPlans_HostingPlanID" ManuallyRouted="false" />
+        <AssociationConnector Association="HostingModel.FK_UsersHostingPlans_HostingPlans_HostingPlanID" ManuallyRouted="false" />
+        <AssociationConnector Association="HostingModel.FK_UsersHostingPlans_Users_UserID" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
