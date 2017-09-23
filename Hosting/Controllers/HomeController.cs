@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Hosting.Models.Home;
+using Hosting.Models.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,7 +12,59 @@ namespace Hosting.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            IndexViewModel model = new IndexViewModel();
+            model.HostingPlans = new List<Models.Shared.HostingPlanModel>();
+            List<FeatureModel> features = new List<FeatureModel>();
+            features.Add(new FeatureModel
+            {
+                Name = "10 GB"
+            });
+            features.Add(new FeatureModel
+            {
+                Name = "1 MS SQL Server"
+            });
+            model.HostingPlans.Add(new Models.Shared.HostingPlanModel
+            {
+                Name = "Простой",
+                Price = 39.99m,
+                Description = "Лучшее решение для новичка...",
+                Features = features
+            });
+
+            List<FeatureModel> features2 = new List<FeatureModel>();
+            features2.Add(new FeatureModel
+            {
+                Name = "20 GB"
+            });
+            features2.Add(new FeatureModel
+            {
+                Name = "2 MS SQL Server"
+            });
+            model.HostingPlans.Add(new Models.Shared.HostingPlanModel
+            {
+                Name = "Стандарт",
+                Price = 69.99m,
+                Description = "Самый оптимальный пакет...",
+                Features = features2
+            });
+
+            List<FeatureModel> features3 = new List<FeatureModel>();
+            features3.Add(new FeatureModel
+            {
+                Name = "50 GB"
+            });
+            features3.Add(new FeatureModel
+            {
+                Name = "5 MS SQL Server"
+            });
+            model.HostingPlans.Add(new Models.Shared.HostingPlanModel
+            {
+                Name = "Профессиональный",
+                Price = 109.99m,
+                Description = "Отличный выбор для профессионалов...",
+                Features = features3
+            });
+            return View(model);
         }
 
         public ActionResult About()
