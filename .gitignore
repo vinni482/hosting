@@ -6,12 +6,14 @@
 *.dll
 *.exe
 *.pdb
-Hosting/Configs/ConnectionStrings.config
-DB/DB.dbmdl
-DB/DB.jfm
 *.dll.config
 *.cache
 *.suo
+# Specific files
+.vs/config/applicationhost.config
+Hosting/Configs/ConnectionStrings.config
+DB/DB.dbmdl
+DB/DB.jfm
 # Include dlls if theyвЂ™re in the NuGet packages directory
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
