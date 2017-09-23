@@ -51,17 +51,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Feature.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HostingModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HostingModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HostingModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HostingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HostingModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HostingModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="HostingPlan.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HostingPlansPrice.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsersHostingPlan.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="HostingModel.edmx">
@@ -80,6 +100,12 @@
     <Content Include="HostingModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HostingModel.Context.cs</LastGenOutput>
+      <DependentUpon>HostingModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="HostingModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HostingModel.edmx</DependentUpon>
+      <LastGenOutput>HostingModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
