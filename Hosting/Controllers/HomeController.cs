@@ -25,9 +25,9 @@ namespace Hosting.Controllers
             });
             model.HostingPlans.Add(new Models.Shared.HostingPlanModel
             {
-                Name = "Простой",
+                Name = "Минимум",
                 Price = 39.99m,
-                Description = "Лучшее решение для новичка...",
+                Description = "Всё необходимое для старта",
                 Features = features
             });
 
@@ -44,7 +44,7 @@ namespace Hosting.Controllers
             {
                 Name = "Стандарт",
                 Price = 69.99m,
-                Description = "Самый оптимальный пакет...",
+                Description = "Самый оптимальный пакет",
                 Features = features2
             });
 
@@ -59,9 +59,9 @@ namespace Hosting.Controllers
             });
             model.HostingPlans.Add(new Models.Shared.HostingPlanModel
             {
-                Name = "Профессиональный",
+                Name = "Профи",
                 Price = 109.99m,
-                Description = "Отличный выбор для профессионалов...",
+                Description = "Отличный выбор для профессионалов",
                 Features = features3
             });
             return View(model);

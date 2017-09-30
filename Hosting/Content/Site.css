@@ -22,3 +22,14 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* Scale up the box */
+.box:hover {
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
+
+/* Fade in the pseudo-element with the bigger shadow */
+.box:hover::after {
+  opacity: 1;
+}
