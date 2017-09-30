@@ -18,6 +18,16 @@ namespace Services
             };
         }
 
+        public static HostingPlanPriceModel ToHostingPlanPriceModel(this HostingPlansPrice obj)
+        {
+            return new HostingPlanPriceModel
+            {
+                ID = obj.ID,
+                Months = obj.Months,
+                Price = obj.Price 
+            };
+        }
+
         public static HostingPlanModel ToHostingPlanModel(this HostingPlan obj)
         {
             return new HostingPlanModel
@@ -26,8 +36,9 @@ namespace Services
                 Description = obj.Description,
                 Features = obj.Features.Select(x => x.ToFeatureModel()).ToList(),
                 Name = obj.Name,
-                Price = decimal.Round(obj.HostingPlansPrices.Select(x => x.Price).Min(), 2, MidpointRounding.AwayFromZero)
-        };
+                Price = decimal.Round(obj.HostingPlansPrices.Select(x => x.Price).Min(), 2, MidpointRounding.AwayFromZero),
+                Prices = obj.HostingPlansPrices.Select(x=>x.ToHostingPlanPriceModel()).ToList()
+            };
         }
     }
 }

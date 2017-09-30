@@ -1,4 +1,5 @@
 ﻿using Models.ViewModels.Home;
+using Models.ViewModels.Shared;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Hosting.Controllers
 {
     public class HomeController : Controller
     {
-        HostingPlansService _hostingPlansService;
+        private readonly HostingPlansService _hostingPlansService;
 
         public HomeController()
         {
@@ -20,8 +21,10 @@ namespace Hosting.Controllers
 
         public async Task<ActionResult> Index()
         {
-            IndexViewModel model = await _hostingPlansService.GetHostingPlansAsync();
-            return View(model);
+            return View(new IndexViewModel
+            {
+                HostingPlans = await _hostingPlansService.GetHostingPlansAsync()
+            });
         }
 
         public ActionResult About()
