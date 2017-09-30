@@ -1,6 +1,4 @@
-﻿using Models.ViewModels.Home;
-using Models.ViewModels.Plans;
-using Models.ViewModels.Shared;
+﻿using Models.Shared;
 using Repositories;
 using System;
 using System.Collections.Generic;

@@ -45,11 +45,11 @@
     <Compile Include="RestSharp\Result.cs" />
     <Compile Include="RestSharp\WHMCreateAccountModel.cs" />
     <Compile Include="RestSharp\WHMCreateAccountResponseModel.cs" />
+    <Compile Include="Shared\HostingPlanPriceModel.cs" />
     <Compile Include="Shared\SMTPModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="Shared\FeatureModel.cs" />
     <Compile Include="Shared\HostingPlanModel.cs" />
-    <Compile Include="Shared\HostingPlanPriceModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
