@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converter.cs" />
+    <Compile Include="HostingPlansService.cs" />
     <Compile Include="RestSharpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -59,9 +61,17 @@
       <Project>{2023E53F-D66A-4074-9EBE-03A30694160E}</Project>
       <Name>AppSettings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EF\EF.csproj">
+      <Project>{0e866003-4fa1-4e9b-a775-33ef5d45e089}</Project>
+      <Name>EF</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{14F94C98-F903-46A2-8A46-93EC1AC07F15}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{2F9F4A23-E861-487A-AD0B-9513003CAD90}</Project>
+      <Name>Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
