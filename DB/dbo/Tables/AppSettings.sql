@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[AppSettings]
+(
+	[Key] VARCHAR(100) NOT NULL PRIMARY KEY, 
+    [Value] VARCHAR(MAX) NOT NULL
+)

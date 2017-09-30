@@ -71,6 +71,7 @@
     <Build Include="dbo\Tables\HostingPlansPrices.sql" />
     <Build Include="dbo\Tables\Features.sql" />
     <Build Include="dbo\Tables\UsersHostingPlans.sql" />
+    <Build Include="dbo\Tables\AppSettings.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="DB.refactorlog" />
