@@ -1,10 +1,10 @@
-﻿using Hosting.Models.Shared;
+﻿using Models.ViewModels.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Hosting.Models.Home
+namespace Models.ViewModels.Home
 {
     public class IndexViewModel
     {

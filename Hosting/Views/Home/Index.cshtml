@@ -1,4 +1,4 @@
-﻿@model Hosting.Models.Home.IndexViewModel
+﻿@model Models.ViewModels.Home.IndexViewModel
 
 @{
     ViewBag.Title = "Home Page";
@@ -13,14 +13,15 @@
     <div class="row">
         @foreach (var plan in Model.HostingPlans)
         {
-            <div class="col-md-4 box" onclick="location.href='@Url.Action("About","Home")'">
+            <div class="col-md-4 box" onclick="location.href='@Url.Action("Select","Plans", new { id = plan.ID })'">
                 <h2>@plan.Name</h2>
                 <p>@plan.Price грн/мес</p>
 
                 <p>
                     @plan.Description
                 </p>
-                <p><a class="btn btn-info" href="http://go.microsoft.com/fwlink/?LinkId=301865">Выбрать</a></p>
+                <p>@Html.ActionLink("Выбрать", "Select", "Plans", new { id = plan.ID }, new { @class = "btn btn-info" })
+                </p>
 
                 @foreach (var feature in plan.Features)
                 {

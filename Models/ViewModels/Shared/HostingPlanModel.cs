@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Hosting.Models.Shared
+namespace Models.ViewModels.Shared
 {
     public class HostingPlanModel
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
