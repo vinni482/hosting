@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
-using AppSettings;
+using Models.Shared;
 
 namespace Services
 {
@@ -13,14 +13,14 @@ namespace Services
 	{
 		private readonly SmtpClient _client;
 
-		public EmailService( )
+		public EmailService(SMTPModel model)
 		{
 			_client.UseDefaultCredentials = false;
-			_client.Credentials = new NetworkCredential(SMTP.user_name, SMTP.password);
-			_client.Host = SMTP.host;
-			_client.Port = SMTP.port;
+			_client.Credentials = new NetworkCredential(model.UserName, model.Password);
+			_client.Host = model.Host;
+			_client.Port = model.Port;
 			_client.DeliveryMethod = SmtpDeliveryMethod.Network;
-			_client.EnableSsl = SMTP.ssl;
+			_client.EnableSsl = model.EnableSSL;
 		}
 	}
 }

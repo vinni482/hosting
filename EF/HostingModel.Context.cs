@@ -30,5 +30,6 @@ namespace EF
         public virtual DbSet<HostingPlansPrice> HostingPlansPrices { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UsersHostingPlan> UsersHostingPlans { get; set; }
+        public virtual DbSet<AppSetting> AppSettings { get; set; }
     }
 }

@@ -13,6 +13,9 @@ namespace Hosting
     {
         protected void Application_Start()
         {
+			// Set settings from AppSettings table
+			//Application["AppSettings"] = new Services.AppSettingsService().GetAll();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             GlobalConfiguration.Configure(WebApiConfig.Register);

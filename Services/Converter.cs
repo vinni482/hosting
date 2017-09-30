@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EF;
-using Models.ViewModels.Shared;
+using Models.Shared;
 
 namespace Services
 {

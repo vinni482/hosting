@@ -51,6 +51,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSetting.cs">
+      <DependentUpon>HostingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Feature.cs">
       <DependentUpon>HostingModel.tt</DependentUpon>
     </Compile>
@@ -90,7 +93,9 @@
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="HostingModel.edmx.diagram">
       <DependentUpon>HostingModel.edmx</DependentUpon>
     </None>

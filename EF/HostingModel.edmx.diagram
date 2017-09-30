@@ -14,6 +14,7 @@
         <AssociationConnector Association="HostingModel.FK_HostingPlansPrices_HostingPlans_HostingPlanID" ManuallyRouted="false" />
         <AssociationConnector Association="HostingModel.FK_UsersHostingPlans_HostingPlans_HostingPlanID" ManuallyRouted="false" />
         <AssociationConnector Association="HostingModel.FK_UsersHostingPlans_Users_UserID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HostingModel.AppSetting" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

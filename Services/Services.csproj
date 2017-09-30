@@ -48,9 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
+    <Compile Include="AppSettingsService.cs" />
     <Compile Include="EmailService.cs" />
-	<Compile Include="Converter.cs" />
+    <Compile Include="Converter.cs" />
     <Compile Include="HostingPlansService.cs" />
     <Compile Include="RestSharpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Hosting.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         HostingPlansService _hostingPlansService;
 
