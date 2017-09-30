@@ -9,18 +9,29 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+   
 IF NOT EXISTS(SELECT * FROM HostingPlans WHERE Active = 1)
 BEGIN
+<<<<<<< HEAD
 	DECLARE @id1 int,
 	@id2 int,
 	@id3 int
+
 	INSERT INTO HostingPlans(Name, Description, Active) VALUES('Минимум','Все необходимое для старта',1)
 	SELECT @id1 = SCOPE_IDENTITY()
 	INSERT INTO HostingPlans(Name, Description, Active) VALUES('Стандарт','Самый оптимальный пакет',1)
 	SELECT @id2 = SCOPE_IDENTITY()
 	INSERT INTO HostingPlans(Name, Description, Active) VALUES('Минимум','Отличный выбор для профессионалов',1)
 	SELECT @id3 = SCOPE_IDENTITY()
-	 
+=======
+	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Минимум','Все необходимое для старта',1)
+	  SELECT @id1 = SCOPE_IDENTITY()
+	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Стандарт','Самый оптимальный пакет',1)
+	  SELECT @id2 = SCOPE_IDENTITY()
+	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Профессиональный','Отличный выбор для профессионалов',1)
+	  SELECT @id3 = SCOPE_IDENTITY()
+>>>>>>> 250dd5a8d59e620a53c8bc7f1b7092d2e87697c8
+
 	INSERT INTO Features(HostingPlanID, Name) VALUES(@id1, '10 GB')
 	INSERT INTO Features(HostingPlanID, Name) VALUES(@id1, '1 MS SQL Server')
 	INSERT INTO Features(HostingPlanID, Name) VALUES(@id2, '20 GB')

@@ -47,9 +47,15 @@
     <Compile Include="RestSharp\WHMCreateAccountResponseModel.cs" />
     <Compile Include="Shared\SMTPModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
+<<<<<<< HEAD
     <Compile Include="Shared\FeatureModel.cs" />
     <Compile Include="Shared\HostingPlanModel.cs" />
-    <Compile Include="Shared\HostingPlanPriceModel.cs" />
+=======
+    <Compile Include="ViewModels\Plans\SelectViewModel.cs" />
+    <Compile Include="ViewModels\Shared\FeatureModel.cs" />
+    <Compile Include="ViewModels\Shared\HostingPlanModel.cs" />
+    <Compile Include="ViewModels\Shared\HostingPlanPriceModel.cs" />
+>>>>>>> 250dd5a8d59e620a53c8bc7f1b7092d2e87697c8
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

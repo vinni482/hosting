@@ -1,4 +1,6 @@
 ﻿using Models.ViewModels.Home;
+using Models.ViewModels.Plans;
+using Models.ViewModels.Shared;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -17,13 +19,14 @@ namespace Services
             _hostingPlansRepository = new HostingPlansRepository();
         }
 
-        public async Task<IndexViewModel> GetHostingPlansAsync()
+        public async Task<List<HostingPlanModel>> GetHostingPlansAsync()
         {
-            IndexViewModel model = new IndexViewModel
-            {
-                HostingPlans = (await _hostingPlansRepository.GetHostingPlansAsync()).Select(x=>x.ToHostingPlanModel()).ToList()
-            };
-            return model;
+            return (await _hostingPlansRepository.GetHostingPlansAsync()).Select(x => x.ToHostingPlanModel()).ToList();
+        }
+
+        public async Task<HostingPlanModel> GetHostingPlanByIdAsync(int id)
+        {
+            return (await _hostingPlansRepository.GetHostingPlanByIdAsync(id)).ToHostingPlanModel();
         }
     }
 }

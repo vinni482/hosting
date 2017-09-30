@@ -13,7 +13,11 @@ namespace Repositories
         public async Task<List<HostingPlan>> GetHostingPlansAsync()
         {
             return await _db.HostingPlans.Include(x => x.Features).Include(x => x.HostingPlansPrices).Where(x => x.Active == true).ToListAsync();
-            //return await _db.HostingPlans.Where(x => x.Active == true).ToListAsync();
+        }
+
+        public async Task<HostingPlan> GetHostingPlanByIdAsync(int id)
+        {
+            return await _db.HostingPlans.Include(x => x.Features).Include(x => x.HostingPlansPrices).Where(x => x.Active == true && x.ID == id).FirstOrDefaultAsync();
         }
     }
 }
