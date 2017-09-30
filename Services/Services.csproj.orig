@@ -48,10 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
+<<<<<<< HEAD
     <Compile Include="EmailService.cs" />
-	<Compile Include="Converter.cs" />
+=======
+    <Compile Include="Converter.cs" />
     <Compile Include="HostingPlansService.cs" />
+>>>>>>> 174bc38145c6b3d983347b16175a96d8c5248de2
     <Compile Include="RestSharpService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

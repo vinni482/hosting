@@ -8,9 +8,10 @@ namespace AppSettings
 {
 	public static class SMTP
 	{
-		public const string server = "";
-		public const int port = 465;
-		public const string user_name = "hosttankinfo@gmail.com";
-		public const string password = "flk3J>>maH9EEnf";
+		public const string host = "smtp.gmail.com";
+		public const int port = 587;
+		public const bool ssl = true;
+		public const string user_name = "user_name";
+		public const string password = "password";
 	}
 }
