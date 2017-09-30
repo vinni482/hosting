@@ -1,5 +1,5 @@
 ﻿using Models.ViewModels.Home;
-using Models.ViewModels.Shared;
+using Models.Shared;
 using Services;
 using System;
 using System.Collections.Generic;
