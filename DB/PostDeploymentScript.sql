@@ -20,7 +20,7 @@ BEGIN
 	  SELECT @id1 = SCOPE_IDENTITY()
 	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Стандарт','Самый оптимальный пакет',1)
 	  SELECT @id2 = SCOPE_IDENTITY()
-	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Минимум','Отличный выбор для профессионалов',1)
+	  INSERT INTO HostingPlans(Name, Description, Active) VALUES('Профессиональный','Отличный выбор для профессионалов',1)
 	  SELECT @id3 = SCOPE_IDENTITY()
 
 	  INSERT INTO Features(HostingPlanID, Name) VALUES(@id1, '10 GB')
