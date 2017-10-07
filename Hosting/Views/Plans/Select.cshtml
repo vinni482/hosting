@@ -1,15 +1,37 @@
 ﻿@model Models.ViewModels.Plans.SelectViewModel
 @{
-    ViewBag.Title = "Select";
+	ViewBag.Title = "Select";
 }
 
 <h2>Select</h2>
+<div class="row">
+	<div class="col-sm-3">
+		<p>@Model.HostingPlan.Name</p>
+		<select class="form-input" name="SelectedPriceId" id="plan-select">
+			@foreach (var p in Model.HostingPlan.Prices)
+			{
+				<option value="@p.ID">@p.Months МЕСЯЦА(ЕВ)</option>
+			}
+		</select>
+	</div>
 
-<p>@Model.HostingPlan.Name</p>
-<select class="form-input" name="SelectedPriceId">
-    @foreach (var p in Model.HostingPlan.Prices)
-    {
-        <option value="@p.ID">@p.Months МЕСЯЦА(ЕВ)</option>
-    }
-</select>
+	<div class="col-sm-3">
+		<span id="price-per-month"></span>
+	</div>
+
+	<div class="col-sm-3">
+		<span id=""></span>
+	</div>
+</div>
+@section scripts{
+	<script type="text/javascript">
+		$(document).ready(function () {
+			
+			$('#plan-select').on('change', function (e) {
+				alert('hello');
+			});
+
+		});
+	</script>
+}
 
