@@ -25,5 +25,13 @@ namespace Hosting.Controllers
                 HostingPlan = await _hostingPlansService.GetHostingPlanByIdAsync(id)
             });
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Checkout(SelectViewModel model)
+        {
+
+            return View();
+        }
     }
 }

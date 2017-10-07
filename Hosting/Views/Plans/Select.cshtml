@@ -15,9 +15,20 @@
 		</select>
 	</div>
 
-	<div class="col-sm-3">
-		<span id="price-per-month"></span>
-	</div>
+<p>@Model.HostingPlan.Name</p>
+@using (Html.BeginForm("Checkout","Plans", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x=>x.HostingPlan.ID)
+    <select class="form-control" name="SelectedPriceId">
+        @foreach (var p in Model.HostingPlan.Prices)
+        {
+            <option value="@p.ID">@p.Months МЕСЯЦА(ЕВ)</option>
+        }
+    </select>
+    <br />
+    <input type="submit" class="btn btn-info pull-right" value="Выбрать" />
+}
 
 	<div class="col-sm-3">
 		<span id=""></span>
