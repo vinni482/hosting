@@ -48,7 +48,9 @@
 			orderReference:"myOrder1",
 			orderDate:1421412898,
 			amount:0.13,
-			currency:"UAH",
+			currency: "UAH",
+			authCode: "324567",
+			cardPan: "42****4242",
 			card:"4111111111111111",
 			expMonth:"11",
 			expYear:"2020",
@@ -88,11 +90,13 @@
 				e.preventDefault();
 				var value =
 				r.merchantAccount + ';' +
-				r.merchantDomainName + ';' +
+				//r.merchantDomainName + ';' +
 				r.orderReference + ';' +
-				r.orderDate + ';' +
+				//r.orderDate + ';' +
 				r.amount + ';' +
 				r.currency + ';' +
+				r.authCode + ';' +
+				r.cardPan + ';' +
 				r.productName[0] + ';' +
 				r.productName[1] + ';' +
 				r.productCount[0] + ';' +
@@ -101,20 +105,19 @@
 				r.productPrice[1];
 
 				
-				//$.ajax({
-				//	url: "/Home/Hash",
-				//	data: { value: value },
-				//	async: false,
-				//	success: function (data) {
-				//		r.merchantSignature = data;
-				//	}
-				//});
+				$.ajax({
+					url: "/Home/Hash",
+					data: { value: value },
+					async: false,
+					success: function (data) {
+						r.merchantSignature = data;
+					}
+				});
 
 				$.ajax({
 					url: "https://api.wayforpay.com/api",
 					type: "POST",
-					data: r,
-					contentType: "application/json",
+					data: JSON.stringify(r),
 					dataType: "json",
 					success: function (data) {
 						alert(data);
