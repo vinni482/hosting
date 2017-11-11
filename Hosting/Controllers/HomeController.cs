@@ -29,10 +29,18 @@ namespace Hosting.Controllers
             });
         }
 
+		string ByteToString(byte[] buff)
+		{
+			string sbinary = "";
+			for (int i = 0; i < buff.Length; i++)
+				sbinary += buff[i].ToString("X2"); /* hex format */
+			return sbinary;
+		}
+
 		public string Hash(string value)
 		{
 			UTF8Encoding encoding = new UTF8Encoding();
-			return Convert.ToBase64String(new HMACMD5(encoding.GetBytes("flk3409refn54t54t*FNJRET")).ComputeHash(encoding.GetBytes("test_merch_n1www.market.uaSimpleSignatureDH78302314153798631547.36UAHПроцессор Intel Core i5-4670 3.4GHz10001ВасяВасечкинsome@mail.com380631234567")));
+			return ByteToString(new HMACMD5(encoding.GetBytes("flk3409refn54t54t*FNJRET")).ComputeHash(encoding.GetBytes("test_merch_n1www.market.uaSimpleSignatureDH78302314153798631547.36UAHПроцессор Intel Core i5-4670 3.4GHz10001ВасяВасечкинsome@mail.com380631234567")));
 		}
 
         public ActionResult About()

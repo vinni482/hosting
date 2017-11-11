@@ -37,22 +37,32 @@
 	<script type="text/javascript">
 		var wayforpay = new Wayforpay();
 		var r = {
+			transactionType:"CHARGE",
 			merchantAccount: "test_merch_n1",
-			merchantDomainName: "www.market.ua",
-			authorizationType: "SimpleSignature",
-			merchantSignature: "b95932786cbe243a76b014846b63fe92",
-			orderReference: "DH783023",
-			orderDate: "1415379863",
-			amount: "1547.36",
-			currency: "UAH",
-			productName: "Процессор Intel Core i5-4670 3.4GHz",
-			productPrice: "1000",
-			productCount: "1",
-			clientFirstName: "Вася",
-			clientLastName: "Васечкин",
-			clientEmail: "some@mail.com",
-			clientPhone: "380631234567"
-		};
+			merchantAuthType:"SimpleSignature",
+			merchantDomainName:"www.super.org",
+			merchantTransactionType:"AUTH",
+			merchantTransactionSecureType: "NON3DS",
+			merchantSignature:"60c5d743b71f79abe48c7183ada4b451",
+			apiVersion:1,
+			orderReference:"myOrder1",
+			orderDate:1421412898,
+			amount:0.13,
+			currency:"UAH",
+			card:"4111111111111111",
+			expMonth:"11",
+			expYear:"2020",
+			cardCvv:"111",
+			cardHolder:"TARAS BULBA",
+			productName:["Samsung WB1100F","Samsung Galaxy Tab 4 7.0 8GB 3G Black"],
+			productPrice:[21.1,30.99],
+			productCount:[1,2],
+			clientFirstName:"Bulba",
+			clientLastName:"Taras",
+			clientCountry:"UKR",
+			clientEmail:"rob@mail.com",
+			clientPhone:"380556667788",
+		}
 		var pay = function () {
 			wayforpay.run(r,
 				function (response) {
@@ -77,32 +87,41 @@
 			$('#payment_submit').on('click', function (e) {
 				e.preventDefault();
 				var value =
-				r.merchantAccount+ ';'+
+				r.merchantAccount + ';' +
 				r.merchantDomainName + ';' +
-				r.authorizationType + ';' +
 				r.orderReference + ';' +
 				r.orderDate + ';' +
 				r.amount + ';' +
 				r.currency + ';' +
-				r.productName + ';' +
-				r.productPrice + ';' +
-				r.productCount + ';' +
-				r.clientFirstName + ';' +
-				r.clientLastName + ';' +
-				r.clientEmail + ';' +
-				r.clientPhone;
+				r.productName[0] + ';' +
+				r.productName[1] + ';' +
+				r.productCount[0] + ';' +
+				r.productCount[1] + ';' +
+				r.productPrice[0] + ';' +
+				r.productPrice[1];
 
 				
-				$.ajax({
-					url: "/Home/Hash",
-					data: { value: value },
-					async: false,
-					success: function (data) {
-						r.merchantSignature = data;
-					}
-				});
+				//$.ajax({
+				//	url: "/Home/Hash",
+				//	data: { value: value },
+				//	async: false,
+				//	success: function (data) {
+				//		r.merchantSignature = data;
+				//	}
+				//});
 
-				pay();
+				$.ajax({
+					url: "https://api.wayforpay.com/api",
+					type: "POST",
+					data: r,
+					contentType: "application/json",
+					dataType: "json",
+					success: function (data) {
+						alert(data);
+					}
+				})
+
+				//pay();
 			});
 
 		});
