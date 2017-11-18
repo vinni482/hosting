@@ -18,19 +18,22 @@ namespace Hosting.Controllers
             _hostingPlansService = new HostingPlansService();
         }
 
-        public async Task<ActionResult> Select(int id)
+        public async Task<ActionResult> Select()
         {
-            return View(new SelectViewModel
-            {
-                HostingPlan = await _hostingPlansService.GetHostingPlanByIdAsync(id)
-            });
+			return View(new SelectViewModel());
         }
 
-        [HttpPost]
+		public async Task<PartialViewResult> SeletedPlansAjax(List<string> ids)
+		{
+			var model = await _hostingPlansService.GetHostingPlansAsync();
+			return PartialView("HostngPlansListPartial", model);
+		}
+
+		[HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Checkout(SelectViewModel model)
         {
-
+			
             return View();
         }
     }

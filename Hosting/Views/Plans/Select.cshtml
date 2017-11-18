@@ -8,22 +8,8 @@
 	@using (Html.BeginForm("Checkout", "Plans", FormMethod.Post))
 	{
 		@Html.AntiForgeryToken()
-		@Html.HiddenFor(x => x.HostingPlan.ID)
-
-		<div class="col-sm-3">
-			<p>@Model.HostingPlan.Name</p>
-			<select class="form-control" name="SelectedPriceId" id="plan-select">
-				@foreach (var p in Model.HostingPlan.Prices)
-				{
-					<option value="@p.ID">@p.Months МЕСЯЦА(ЕВ)</option>
-				}
-			</select>
-		</div>
-
-		<div class="col-sm-3">
-			<span id="price-per-month"></span>
-		</div>
-		<div class="col-sm-3">
+		
+		<div id="plans-container">
 
 		</div>
 
@@ -33,98 +19,55 @@
 	}
 </div>
 @section scripts{
-	<script id="widget-wfp-script" language="javascript" type="text/javascript" src="https://secure.wayforpay.com/server/pay-widget.js"></script>
-	<script type="text/javascript">
-		var wayforpay = new Wayforpay();
-		var r = {
-			transactionType:"CHARGE",
-			merchantAccount: "test_merch_n1",
-			merchantAuthType:"SimpleSignature",
-			merchantDomainName:"www.super.org",
-			merchantTransactionType:"SALE",
-			merchantTransactionSecureType: "NON3DS",
-			merchantSignature: "",
-			apiVersion:1,
-			orderReference: "order-1430206527",
-			orderDate:1421412898,
-			amount:0.31,
-			currency: "UAH",
-			card:"4242424242424242",
-			expMonth:"11",
-			expYear:"2018",
-			cardCvv:"111",
-			cardHolder:"TARAS BULBA",
-			productName:["Samsung WB1100F","Samsung Galaxy Tab 4 7.0 8GB 3G Black"],
-			productPrice:[21.1,30.99],
-			productCount:[1,2],
-			clientFirstName:"Bulba",
-			clientLastName:"Taras",
-			clientCountry:"UKR",
-			clientEmail:"rob@mail.com",
-			clientPhone:"380556667788",
-		}
-		var pay = function () {
-			wayforpay.run(r,
-				function (response) {
-					// on approved
-				},
-				function (response) {
-					// on declined
-				},
-				function (response) {
-					// on pending or in processing
-				}
-			);
-		}
-	</script>
+
 	<script type="text/javascript">
 		$(document).ready(function () {
 
-			$('#plan-select').on('change', function (e) {
-				alert('hello');
-			});
+			function supports_html5_storage() {
+				try { return 'localStorage' in window && window['localStorage'] !== null; }
+				catch (e) { return false; }
+			}
 
-			$('#payment_submit').on('click', function (e) {
-				e.preventDefault();
-				var value =
-				r.merchantAccount + ';' +
-				r.merchantDomainName + ';' +
-				r.orderReference + ';' +
-				r.orderDate + ';' +
-				r.amount + ';' +
-				r.currency + ';' +
-				//r.authCode + ';' +
-				//r.cardPan + ';' +
-				r.productName[0] + ';' +
-				r.productName[1] + ';' +
-				r.productCount[0] + ';' +
-				r.productCount[1] + ';' +
-				r.productPrice[0] + ';' +
-				r.productPrice[1] + ';';
+			var arr = [];
 
-				
-				$.ajax({
-					url: "/Home/Hash",
-					data: { value: value },
-					async: false,
-					success: function (data) {
-						r.merchantSignature = data;
-					}
-				});
+			for (var i = 0; i < localStorage.length; i++) {
+				var key = localStorage.key(i);
+				var value = localStorage.getItem(key);
+				arr.push(parseInt(key));
+			}
 
-				$.ajax({
-					url: "https://api.wayforpay.com/api",
-					type: "POST",
-					data: JSON.stringify(r),
-					dataType: "json",
-					success: function (data) {
-						alert(data);
-					}
-				})
-
-				//pay();
-			});
-
+			$.ajax({
+				url: "@Url.Action("SeletedPlansAjax", "Plans")",
+				data: JSON.stringify({ ids: arr }),
+				contentType: 'application/json',
+				success: function (html) {
+					$('#plans-container').html(html);
+				}
+			})
+			
 		});
 	</script>
 }
+
+
+@*
+
+	@Html.HiddenFor(x => x.HostingPlan.ID)
+
+			<div class="col-sm-3">
+				<p>@Model.HostingPlan.Name</p>
+				<select class="form-control" name="SelectedPriceId" id="plan-select">
+					@foreach (var p in Model.HostingPlan.Prices)
+					{
+						<option value="@p.ID">@p.Months МЕСЯЦА(ЕВ)</option>
+					}
+				</select>
+			</div>
+
+			<div class="col-sm-3">
+				<span id="price-per-month"></span>
+			</div>
+			<div class="col-sm-3">
+
+			</div>*@
+@*  *@
