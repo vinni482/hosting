@@ -41,7 +41,7 @@
 			merchantAccount: "test_merch_n1",
 			merchantAuthType:"SimpleSignature",
 			merchantDomainName:"www.super.org",
-			merchantTransactionType:"AUTH",
+			merchantTransactionType:"SALE",
 			merchantTransactionSecureType: "NON3DS",
 			merchantSignature:"60c5d743b71f79abe48c7183ada4b451",
 			apiVersion:1,
@@ -49,11 +49,9 @@
 			orderDate:1421412898,
 			amount:0.13,
 			currency: "UAH",
-			authCode: "324567",
-			cardPan: "42****4242",
-			card:"4111111111111111",
+			card:"4242424242424242",
 			expMonth:"11",
-			expYear:"2020",
+			expYear:"2018",
 			cardCvv:"111",
 			cardHolder:"TARAS BULBA",
 			productName:["Samsung WB1100F","Samsung Galaxy Tab 4 7.0 8GB 3G Black"],
@@ -90,19 +88,17 @@
 				e.preventDefault();
 				var value =
 				r.merchantAccount + ';' +
-				//r.merchantDomainName + ';' +
+				r.merchantDomainName + ';' +
 				r.orderReference + ';' +
-				//r.orderDate + ';' +
+				r.orderDate + ';' +
 				r.amount + ';' +
 				r.currency + ';' +
-				r.authCode + ';' +
-				r.cardPan + ';' +
 				r.productName[0] + ';' +
 				r.productName[1] + ';' +
 				r.productCount[0] + ';' +
 				r.productCount[1] + ';' +
 				r.productPrice[0] + ';' +
-				r.productPrice[1];
+				r.productPrice[1] + ';';
 
 				
 				$.ajax({
