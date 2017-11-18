@@ -43,11 +43,11 @@
 			merchantDomainName:"www.super.org",
 			merchantTransactionType:"SALE",
 			merchantTransactionSecureType: "NON3DS",
-			merchantSignature:"60c5d743b71f79abe48c7183ada4b451",
+			merchantSignature: "",
 			apiVersion:1,
-			orderReference:"myOrder1",
+			orderReference: "order-1430206527",
 			orderDate:1421412898,
-			amount:0.13,
+			amount:0.31,
 			currency: "UAH",
 			card:"4242424242424242",
 			expMonth:"11",
@@ -93,6 +93,8 @@
 				r.orderDate + ';' +
 				r.amount + ';' +
 				r.currency + ';' +
+				//r.authCode + ';' +
+				//r.cardPan + ';' +
 				r.productName[0] + ';' +
 				r.productName[1] + ';' +
 				r.productCount[0] + ';' +
